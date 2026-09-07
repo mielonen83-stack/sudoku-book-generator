@@ -2,25 +2,29 @@ name: Build Sudoku PDFs
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, master ]
 
 jobs:
   build:
-াচিতruns-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
-    - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
-    - name: Generate PDFs
-      run: |
-        python main.py
-    - name: Upload PDF artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: sudoku-books-pdf
-        path: *.pdf
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          
+      - name: Generate PDFs
+        run: |
+          python main.py
+          
+      - name: Upload PDF artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: sudoku-books-pdf
+          path: *.pdf
