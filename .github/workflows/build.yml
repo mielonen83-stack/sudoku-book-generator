@@ -16,15 +16,13 @@ jobs:
           python-version: '3.10'
 
       - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
+        run: pip install -r requirements.txt
 
       - name: Generate PDFs
-        run: |
-          python main.py
+        run: python main.py
 
       - name: Upload PDF artifacts
         uses: actions/upload-artifact@v4
         with:
           name: sudoku-books-pdf
-          path: *.pdf
+          path: '*.pdf'
